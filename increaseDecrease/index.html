@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value Manipulation</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        
+            @media(max-width:500px) {
+                body{
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+
+                .container{
+                    width: 100px;
+                }
+
+               .h{
+                    width: 100px;
+                }
+                p{
+
+                }
+
+                .btn{
+                    width: 100px;
+                }
+            }
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="h">Value Manipulation</h1>
+        <p>Current Value: <span id="value">0</span></p>
+        <button class="btn btn-primary" id="increaseBtn">Increase</button>
+        <button class="btn btn-warning" id="decreaseBtn">Decrease</button>
+        <button class="btn btn-danger" id="resetBtn">Reset</button>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize the value
+            let value = 0;
+            updateValue();
+
+            // Increase button click event
+            $('#increaseBtn').click(function () {
+                value++;
+                updateValue();
+            });
+
+            // Decrease button click event
+            $('#decreaseBtn').click(function () {
+                if (value > 0) {
+                    value--;
+                    updateValue();
+                }
+            });
+
+            // Reset button click event
+            $('#resetBtn').click(function () {
+                value = 0;
+                updateValue();
+            });
+
+            // Function to update the displayed value
+            function updateValue() {
+                $('#value').text(value);
+            }
+        });
+    </script>
+</body>
+</html>
