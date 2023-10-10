@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Filter Names by Letter</title>
+    <style>
+        @media(max-width:500px) {
+            body{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+            
+            /*  
+           div, h1, ul, button{
+                width: 100px;
+            }
+            */
+
+            .div{
+                width: 100px;
+            }
+            
+            .h1{
+                width: 100px;
+            }
+
+            .ul{
+                width: 100px;
+            }
+            .button{
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <h1>Filter Names by Letter</h1>
+                <div class="btn-group" role="group" aria-label="Letter Buttons">
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="A">A</button>
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="B">B</button>
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="C">C</button>
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="D">D</button>
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="E">E</button>
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="F">F</button>
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="G">G</button>
+                    <button type="button" class="btn btn-primary letter-btn" data-letter="H">H</button>
+                </div>
+                <ul class="list-group mt-3" id="name-list">
+                    <!-- Names will be displayed here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample list of names
+        const names = [
+            "Alice", "Bob", "Charlie", "David", "Eva", "Frank", "Grace", "Henry",
+            "Anna", "Ben", "Catherine", "Daniel", "Emily", "George", "Hannah"
+        ];
+
+        // Function to update the name list based on the selected letter
+        function filterNamesByLetter(letter) {
+            const filteredNames = names.filter(name => name.startsWith(letter));
+            const nameList = document.getElementById('name-list');
+            nameList.innerHTML = ''; // Clear the list
+
+            filteredNames.forEach(name => {
+                const listItem = document.createElement('li');
+                listItem.textContent = name;
+                listItem.classList.add('list-group-item');
+                nameList.appendChild(listItem);
+            });
+        }
+
+        // Add click event listeners to letter buttons
+        const letterButtons = document.querySelectorAll('.letter-btn');
+        letterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedLetter = button.getAttribute('data-letter');
+                filterNamesByLetter(selectedLetter);
+            });
+        });
+
+        // Initially display names for letter 'A'
+        filterNamesByLetter('A');
+    </script>
+</body>
+</html>
