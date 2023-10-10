@@ -1,0 +1,78 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search and See Profiles</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+         @media(max-width:500px) {
+        body{
+            display: flex;
+                justify-content: center;
+                flex-direction: column;
+        }
+        .form-control{
+            width: 100px;
+        }
+
+        .list-group-item{
+                width: 100px;
+        }
+
+
+    }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1>Search for Persons</h1>
+    
+    <!-- Search Input -->
+    <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search for a person...">
+    
+    <!-- Person List -->
+    <ul id="personList" class="list-group">
+        <i class="glyphicon glyphicon-user"></i>
+        <li class="list-group-item ">John Doe <button class="btn btn-primary btn-sm float-right" data-profile="john-doe">See Profile</button></li>
+        <li class="list-group-item">Jane Smith <button class="btn btn-primary btn-sm float-right" data-profile="jane-smith">See Profile</button></li>
+        <li class="list-group-item">Bob Johnson <button class="btn btn-primary btn-sm float-right" data-profile="bob-johnson">See Profile</button></li>
+        <li class="list-group-item">Alice Brown <button class="btn btn-primary btn-sm float-right" data-profile="alice-brown">See Profile</button></li>
+    </ul>
+</div>
+
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- JavaScript for Search Functionality -->
+<script>
+    $(document).ready(function() {
+        $("#searchInput").on("keyup", function() {
+            var searchText = $(this).val().toLowerCase();
+            $("#personList li").each(function() {
+                var personName = $(this).text().toLowerCase();
+                if (personName.includes(searchText)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        // "See Profile" button click event
+        $("button[data-profile]").click(function() {
+            var profileName = $(this).data("profile");
+            alert("You clicked the 'See Profile' button for " + profileName + ".");
+            // You can navigate to the profile page or perform other actions here.
+        });
+    });
+</script>
+
+</body>
+</html>

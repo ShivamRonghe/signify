@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Names in List</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        @media(max-width:500px) {
+            body{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .form-control{
+                width: 100%;
+            }
+            .list-group{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Search Names of webseries</h2>
+        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search names...">
+        <ul id="nameList" class="list-group">
+            <li class="list-group-item">Freelancer</li>
+            <li class="list-group-item">Mirzapur</li>
+            <li class="list-group-item">Bandish BAndits</li>
+            <li class="list-group-item">Parampara</li>
+            <li class="list-group-item">Sacred Games</li>
+        </ul>
+    </div>
+
+    <!-- Include Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Function to filter names based on user input
+        function filterNames() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const list = document.getElementById('nameList');
+            const names = list.getElementsByTagName('li');
+
+            for (let i = 0; i < names.length; i++) {
+                const name = names[i].textContent.toLowerCase();
+                if (name.includes(filter)) {
+                    names[i].style.display = '';
+                } else {
+                    names[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Attach an event listener to the input field
+        document.getElementById('searchInput').addEventListener('input', filterNames);
+    </script>
+</body>
+</html>
